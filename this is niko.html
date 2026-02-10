@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meowl</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
-	<title>VOTE NOW</title>
-	<link rel="icon" href="/static/ssoggycat/team/images/soggymask.webp"/>
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #FFEB3B, #FF80AB); /* yellow-pink gradient */
+    overflow: hidden;
+}
 
-	<meta property="og:title" content="VOTE NOW"/>
+h1 {
+    font-size: 4rem;
+    background: linear-gradient(to right, purple, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-	<meta name="description" content="You've been tasked with saving an oddly small sopping wet cat from drowning in a bathtub. Would you have enough kindness to save it from its demise?" />
+h1:hover {
+    animation: rainbow 2s linear infinite;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6);
+}
 
-	<meta name="twitter:card" content="summary"/>
-	<meta name="theme-color" content="#64DAFF"/>
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-	<link href="2024election.css" rel="stylesheet"/>
+#meowl-container {
+    perspective: 1000px;
+}
+
+#meowl {
+    width: 300px;
+    height: 300px;
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+</style>
 </head>
 <body>
-	<div class="result">
-		<label class="option-01">
-			<span class="one" onclick="window.open('/static/ssoggycat/2024election/videos/awesome.mp4')">SOGGY FREEDOM</span>
-			<input name="Choice" type="radio"/>
-		</label>
-		<label class="option-02">
-			<img class="two" src="/static/ssoggycat/2024election/images/cool.gif" onclick="window.open('/static/ssoggycat/2024election/videos/NOOO.mp4')"/>
-			<input name="Choice" type="radio"/>
-		</label>
-	</div>
+<h1>meowl.</h1>
+<div id="meowl-container">
+    <img id="meowl" src="https://files.meowl.website/meowl_cat" alt="Meowl">
+</div>
+
+<script>
+const meowl = document.getElementById('meowl');
+document.addEventListener('mousemove', (e) => {
+    const { innerWidth, innerHeight } = window;
+    const xRotation = ((e.clientY / innerHeight) - 0.5) * 30; // rotate top/bottom
+    const yRotation = ((e.clientX / innerWidth) - 0.5) * 30; // rotate left/right
+    meowl.style.transform = `rotateX(${-xRotation}deg) rotateY(${yRotation}deg)`;
+});
+</script>
 </body>
 </html>
