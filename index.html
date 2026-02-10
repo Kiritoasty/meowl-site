@@ -14,13 +14,28 @@ html, body {
     overflow: hidden;
     background: url('https://cdn.meowl.website/background.gif') center/cover no-repeat fixed;
     backdrop-filter: blur(8px);
-    animation: fadeInBG 2s ease forwards;
 }
 
-/* intro fade‑in */
-@keyframes fadeInBG {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Wrapper for tween */
+#wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-10px);
+    filter: blur(12px); /* 75% blur approximation */
+    opacity: 0;
+    animation: introAnim 1.5s ease forwards;
+}
+
+/* Tween animation */
+@keyframes introAnim {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
 }
 
 /* Topbar */
@@ -68,11 +83,10 @@ h1:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateY(7%); /* move Meowl slightly down */
 }
 
 #meowl {
-    height: 68vh;       /* keeps previous comfortable size */
+    height: 68vh;
     width: auto;
     max-width: 80vw;
     transition: transform 0.1s ease-out;
@@ -103,14 +117,17 @@ h1:hover {
 </head>
 <body>
 
-<div id="topbar">W.I.P. Topbar</div>
-
-<h1>meowl.</h1>
-<div id="meowl-container">
-    <div id="meowl">
-        <img src="https://cdn.meowl.website/screaming-meowl.jpg" alt="Screaming Meowl">
+<div id="wrapper">
+    <div id="topbar">W.I.P. Topbar</div>
+    <h1>meowl.</h1>
+    <div id="meowl-container">
+        <div id="meowl">
+            <img src="https://cdn.meowl.website/screaming-meowl.jpg" alt="Screaming Meowl">
+        </div>
     </div>
 </div>
+
+<audio id="bg-music" src="https://cdn.meowl.website/new-soul.mp3" autoplay loop></audio>
 
 <script>
 // 3D tilt effect
@@ -151,5 +168,3 @@ setInterval(spawnStar, 300);
 
 </body>
 </html>
-
-
