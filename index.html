@@ -4,93 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meowl</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;600&display=swap');
 
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Segoe UI", sans-serif;
     overflow: hidden;
-    background: url('https://cdn.meowl.website/background2.gif') center/cover no-repeat fixed;
-    backdrop-filter: blur(8px);
+
+    /* Classic Frutiger background */
+    background:
+        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 50%),
+        linear-gradient(180deg, #b9f2ff, #8fd3f4, #84fab0);
 }
 
-/* Wrapper for tween */
+/* floating light streaks */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(120deg,
+            transparent 20%,
+            rgba(255,255,255,0.25) 40%,
+            transparent 60%);
+    opacity: 0.4;
+    animation: sweep 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes sweep {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+}
+
+/* Glass wrapper */
 #wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(-10px);
-    filter: blur(12px); /* 75% blur approximation */
+
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+    box-shadow:
+        inset 0 0 40px rgba(255,255,255,0.6),
+        0 40px 80px rgba(0,120,255,0.25);
+
+    animation: intro 1.6s cubic-bezier(.2,.8,.2,1) forwards;
     opacity: 0;
-    animation: introAnim 1.5s ease forwards;
+    transform: scale(0.95);
 }
 
-/* Tween animation */
-@keyframes introAnim {
+@keyframes intro {
     to {
-        transform: translateY(0);
-        filter: blur(0);
         opacity: 1;
+        transform: scale(1);
     }
 }
 
-/* Topbar */
+/* Topbar glass */
 #topbar {
     position: fixed;
-    top: -60px;
+    top: -70px;
     left: 0;
     width: 100%;
-    height: 60px;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(8px);
-    color: white;
+    height: 70px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.55),
+        rgba(255,255,255,0.15)
+    );
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.9),
+        0 10px 30px rgba(0,0,0,0.25);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    font-weight: bold;
+
+    font-weight: 600;
+    color: #006b9f;
+    letter-spacing: 0.15em;
     transition: top 0.3s ease;
     z-index: 999;
 }
 
 /* Title */
 h1 {
-    font-size: 4rem;
-    background: linear-gradient(to right, purple, blue);
+    font-size: 4.5rem;
+    margin-bottom: 40px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #b5ecff 40%,
+        #5fbfff
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    cursor: pointer;
-    text-align: center;
-    margin-bottom: 40px;
-    transition: all 0.3s ease;
-}
-h1:hover {
-    animation: rainbowText 2s linear infinite;
-    text-shadow: 0 0 8px rgba(255,255,255,0.8);
-}
-@keyframes rainbowText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+
+    text-shadow:
+        0 2px 2px rgba(255,255,255,0.9),
+        0 8px 25px rgba(0,150,255,0.7);
+
+    cursor: default;
 }
 
+/* Meowl glass frame */
 #meowl-container {
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    perspective: 1200px;
 }
 
 #meowl {
-    height: 68vh;
-    width: auto;
+    height: 70vh;
     max-width: 80vw;
-    transition: transform 0.1s ease-out;
     transform-style: preserve-3d;
+    transition: transform 0.08s ease-out;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.55),
+        rgba(255,255,255,0.15)
+    );
+    padding: 18px;
+    border-radius: 28px;
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,0.7),
+        0 25px 70px rgba(0,140,255,0.5);
+}
+
+/* glossy highlight */
+#meowl::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.6),
+        transparent 40%
+    );
+    pointer-events: none;
 }
 
 #meowl img {
@@ -100,73 +164,70 @@ h1:hover {
     border-radius: 20px;
 }
 
-/* Stars */
-.star {
+/* floating bubbles */
+.bubble {
     position: fixed;
-    background: white;
     border-radius: 50%;
+    background: radial-gradient(circle at top,
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0.15));
     pointer-events: none;
-    z-index: 1000;
-    animation: starAnim 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: bubbleFloat linear forwards;
 }
-@keyframes starAnim {
-    0% { opacity: 1; transform: scale(1.1); }
-    100% { opacity: 0; transform: scale(1); }
+
+@keyframes bubbleFloat {
+    from {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    to {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <div id="wrapper">
-    <div id="topbar">W.I.P. Topbar</div>
+    <div id="topbar">MEOWL SYSTEM UI</div>
     <h1>meowl.</h1>
+
     <div id="meowl-container">
         <div id="meowl">
-            <img src="https://cdn.meowl.website/normal-meowl.jpg" alt="Screaming Meowl">
+            <img src="https://cdn.meowl.website/screaming-meowl.jpg">
         </div>
     </div>
 </div>
 
-<audio id="bg-music" src="https://cdn.meowl.website/new-soul.mp3" autoplay loop></audio>
+<audio src="https://cdn.meowl.website/new-soul.mp3" autoplay loop></audio>
 
 <script>
-// 3D tilt effect
-const meowl = document.getElementById('meowl');
-document.addEventListener('mousemove', (e) => {
-    const { innerWidth, innerHeight } = window;
-    const xRotation = ((e.clientY / innerHeight) - 0.5) * 30;
-    const yRotation = ((e.clientX / innerWidth) - 0.5) * 30;
-    meowl.style.transform = `rotateX(${-xRotation}deg) rotateY(${yRotation}deg)`;
+const meowl = document.getElementById("meowl");
+const topbar = document.getElementById("topbar");
+
+document.addEventListener("mousemove", e => {
+    const x = (e.clientX / innerWidth - 0.5) * 30;
+    const y = (e.clientY / innerHeight - 0.5) * 30;
+    meowl.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    topbar.style.top = e.clientY < 70 ? "0" : "-70px";
 });
 
-// Show topbar on hover near top
-const topbar = document.getElementById('topbar');
-document.addEventListener('mousemove', (e) => {
-    if (e.clientY < 60) {
-        topbar.style.top = '0';
-    } else {
-        topbar.style.top = '-60px';
-    }
-});
-
-// Spawn stars slowly
-function spawnStar() {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    const size = 2 + Math.random() * 4; // 2px-6px
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.left = Math.random() * window.innerWidth + 'px';
-    star.style.top = Math.random() * window.innerHeight + 'px';
-    document.body.appendChild(star);
-    setTimeout(() => star.remove(), 700); // fade out 0.7s
-}
-
-// Spawn a star every 0.3 seconds
-setInterval(spawnStar, 300);
+/* bubbles */
+setInterval(() => {
+    const b = document.createElement("div");
+    b.className = "bubble";
+    const size = 10 + Math.random() * 30;
+    b.style.width = b.style.height = size + "px";
+    b.style.left = Math.random() * innerWidth + "px";
+    b.style.bottom = "-40px";
+    b.style.animationDuration = 6 + Math.random() * 6 + "s";
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 12000);
+}, 450);
 </script>
 
 </body>
 </html>
-
 
