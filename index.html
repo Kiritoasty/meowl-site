@@ -8,193 +8,145 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;600&display=swap');
 
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 50%),
-        linear-gradient(180deg, #b9f2ff, #8fd3f4, #84fab0);
+html,body{
+height:100%;
+margin:0;
+font-family:"Segoe UI",sans-serif;
+overflow:hidden;
+background:
+radial-gradient(circle at top,rgba(255,255,255,.35),transparent 50%),
+linear-gradient(180deg,#b9f2ff,#8fd3f4,#84fab0)
 }
 
-/* light sweep */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent 20%,
-        rgba(255,255,255,0.25) 40%,
-        transparent 60%
-    );
-    animation: sweep 8s linear infinite;
-    pointer-events: none;
+body:before{
+content:"";
+position:fixed;
+inset:0;
+background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.25) 40%,transparent 60%);
+animation:sweep 8s linear infinite;
+pointer-events:none
 }
 
-@keyframes sweep {
-    from { transform: translateX(-100%); }
-    to   { transform: translateX(100%); }
+@keyframes sweep{
+from{transform:translateX(-100%)}
+to{transform:translateX(100%)}
 }
 
-/* ===== HEADER ===== */
-#aero-header {
-    position: fixed;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 80px);
-    max-width: 1200px;
-    height: 64px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 22px;
-
-    background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.55),
-        rgba(255,255,255,0.2)
-    );
-    backdrop-filter: blur(22px) saturate(180%);
-    border-radius: 18px;
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,0.9),
-        0 12px 35px rgba(0,140,255,0.35);
-
-    z-index: 1000;
+#aero-header{
+position:fixed;
+top:18px;
+left:50%;
+transform:translateX(-50%);
+width:calc(100% - 80px);
+max-width:1200px;
+height:64px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 22px;
+background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.2));
+backdrop-filter:blur(22px) saturate(180%);
+border-radius:18px;
+box-shadow:inset 0 1px rgba(255,255,255,.9),0 12px 35px rgba(0,140,255,.35);
+z-index:1000
 }
 
-.header-left img {
-    height: 165px;
-    filter: drop-shadow(0 4px 10px rgba(0,140,255,0.4));
+.header-left img{
+height:165px;
+filter:drop-shadow(0 4px 10px rgba(0,140,255,.4))
 }
 
-.header-right {
-    display: flex;
-    gap: 22px;
+.header-right{
+display:flex;
+gap:22px
 }
 
-.header-right a {
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #007bb8;
-
-    padding: 8px 14px;
-    border-radius: 12px;
-
-    background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.6),
-        rgba(255,255,255,0.15)
-    );
-
-    box-shadow:
-        inset 0 1px rgba(255,255,255,0.9),
-        0 6px 18px rgba(0,120,255,0.25);
-
-    transition: all 0.25s ease;
+.header-right a{
+text-decoration:none;
+font-size:.95rem;
+font-weight:600;
+color:#007bb8;
+padding:8px 14px;
+border-radius:12px;
+background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.15));
+box-shadow:inset 0 1px rgba(255,255,255,.9),0 6px 18px rgba(0,120,255,.25);
+transition:.25s ease
 }
 
-.header-right a:hover {
-    transform: translateY(-1px);
-    color: #005a87;
-    box-shadow:
-        inset 0 1px rgba(255,255,255,1),
-        0 10px 26px rgba(0,120,255,0.45);
+.header-right a:hover{
+transform:translateY(-1px);
+color:#005a87;
+box-shadow:inset 0 1px rgba(255,255,255,1),0 10px 26px rgba(0,120,255,.45)
 }
 
-/* ===== MAIN ===== */
-#wrapper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(25px) saturate(180%);
-    box-shadow:
-        inset 0 0 40px rgba(255,255,255,0.6),
-        0 40px 80px rgba(0,120,255,0.25);
-
-    animation: intro 1.6s cubic-bezier(.2,.8,.2,1) forwards;
-    opacity: 0;
-    transform: scale(0.95);
+#wrapper{
+height:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(25px) saturate(180%);
+box-shadow:inset 0 0 40px rgba(255,255,255,.6),0 40px 80px rgba(0,120,255,.25);
+animation:intro 1.6s cubic-bezier(.2,.8,.2,1) forwards;
+opacity:0;
+transform:scale(.95)
 }
 
-@keyframes intro {
-    to { opacity: 1; transform: scale(1); }
+@keyframes intro{
+to{opacity:1;transform:scale(1)}
 }
 
-h1 {
-    font-size: 4.5rem;
-    margin-bottom: 40px;
-    background: linear-gradient(180deg, #fff, #b5ecff 40%, #5fbfff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-        0 2px 2px rgba(255,255,255,0.9),
-        0 8px 25px rgba(0,150,255,0.7);
+h1{
+font-size:4.5rem;
+margin-bottom:40px;
+background:linear-gradient(180deg,#fff,#b5ecff 40%,#5fbfff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 2px 2px rgba(255,255,255,.9),0 8px 25px rgba(0,150,255,.7)
 }
 
-#meowl-container {
-    perspective: 1200px;
+#meowl-container{perspective:1200px}
+
+#meowl{
+position:relative;
+height:70vh;
+max-width:80vw;
+padding:18px;
+border-radius:28px;
+transform-style:preserve-3d;
+transition:transform .08s ease-out;
+background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.15));
+box-shadow:inset 0 0 30px rgba(255,255,255,.7),0 25px 70px rgba(0,140,255,.5)
 }
 
-#meowl {
-    height: 70vh;
-    max-width: 80vw;
-    padding: 18px;
-    border-radius: 28px;
-    transform-style: preserve-3d;
-    transition: transform 0.08s ease-out;
-
-    background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.55),
-        rgba(255,255,255,0.15)
-    );
-
-    box-shadow:
-        inset 0 0 30px rgba(255,255,255,0.7),
-        0 25px 70px rgba(0,140,255,0.5);
+#meowl:before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:inherit;
+background:linear-gradient(120deg,rgba(255,255,255,.6),transparent 40%);
+pointer-events:none
 }
 
-#meowl::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(120deg, rgba(255,255,255,0.6), transparent 40%);
-    pointer-events: none;
+#meowl img{
+width:100%;
+height:100%;
+object-fit:contain;
+border-radius:20px
 }
 
-#meowl img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
+.bubble{
+position:fixed;
+border-radius:50%;
+background:radial-gradient(circle at top,rgba(255,255,255,.9),rgba(255,255,255,.15));
+animation:bubbleFloat linear forwards;
+pointer-events:none
 }
 
-/* bubbles */
-.bubble {
-    position: fixed;
-    border-radius: 50%;
-    background: radial-gradient(circle at top,
-        rgba(255,255,255,0.9),
-        rgba(255,255,255,0.15));
-    animation: bubbleFloat linear forwards;
-    pointer-events: none;
-}
-
-@keyframes bubbleFloat {
-    from { transform: translateY(0); opacity: 0.6; }
-    to   { transform: translateY(-120vh); opacity: 0; }
+@keyframes bubbleFloat{
+from{transform:translateY(0);opacity:.6}
+to{transform:translateY(-120vh);opacity:0}
 }
 </style>
 </head>
@@ -202,50 +154,47 @@ h1 {
 <body>
 
 <div id="aero-header">
-    <div class="header-left">
-        <img src="https://cdn.kiritoasty.net/biggerlogo.png">
-    </div>
-    <div class="header-right">
-        <a href="https://meowl.website/">The Original Source</a>
-        <a href="https://meowl.website/privacypolicy">Privacy Policy</a>
-    </div>
+<div class="header-left">
+<img src="https://cdn.kiritoasty.net/biggerlogo.png">
+</div>
+<div class="header-right">
+<a href="https://meowl.website/">The Original Source</a>
+<a href="https://meowl.website/privacypolicy">Privacy Policy</a>
+</div>
 </div>
 
 <div id="wrapper">
-    <h1>meowl.</h1>
-    <div id="meowl-container">
-        <div id="meowl">
-            <img src="https://cdn.meowl.website/normal-meowl.jpg">
-        </div>
-    </div>
+<h1>meowl.</h1>
+<div id="meowl-container">
+<div id="meowl">
+<img src="https://cdn.meowl.website/normal-meowl.jpg">
+</div>
+</div>
 </div>
 
 <audio src="https://cdn.meowl.website/new-soul.mp3" autoplay loop></audio>
 
 <script>
-const meowl = document.getElementById("meowl");
+const box=document.getElementById("meowl")
 
-document.addEventListener("mousemove", e => {
-    const x = (e.clientX / innerWidth - 0.5) * 30;
-    const y = (e.clientY / innerHeight - 0.5) * 30;
-    meowl.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
-});
+document.addEventListener("mousemove",e=>{
+let rx=(e.clientX/innerWidth-.5)*30
+let ry=(e.clientY/innerHeight-.5)*30
+box.style.transform=`rotateY(${rx}deg) rotateX(${-ry}deg)`
+})
 
-setInterval(() => {
-    const b = document.createElement("div");
-    b.className = "bubble";
-    const size = 10 + Math.random() * 30;
-    b.style.width = b.style.height = size + "px";
-    b.style.left = Math.random() * innerWidth + "px";
-    b.style.bottom = "-40px";
-    b.style.animationDuration = 6 + Math.random() * 6 + "s";
-    document.body.appendChild(b);
-    setTimeout(() => b.remove(), 12000);
-}, 450);
+setInterval(()=>{
+let d=document.createElement("div")
+d.className="bubble"
+let s=10+Math.random()*30
+d.style.width=d.style.height=s+"px"
+d.style.left=Math.random()*innerWidth+"px"
+d.style.bottom="-40px"
+d.style.animationDuration=6+Math.random()*6+"s"
+document.body.appendChild(d)
+setTimeout(()=>d.remove(),12000)
+},450)
 </script>
 
 </body>
 </html>
-
-
-
